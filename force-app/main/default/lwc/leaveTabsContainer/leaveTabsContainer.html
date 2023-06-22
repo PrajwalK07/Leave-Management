@@ -1,0 +1,24 @@
+<template>
+    <div class="mainWrapper show-tabs-on-desktop-view">
+        <lightning-tabset variant="scoped">
+            <lightning-tab label="My leaves Status">
+               
+                <c-leave-my-leaves oneventfrommyleaves={handleeventFromMyLeaves} lwc:ref="myLeaveComp"></c-leave-my-leaves>
+            </lightning-tab>
+            <lightning-tab label="My Leaves ">
+                
+                <c-leave-main-container ></c-leave-main-container>
+            </lightning-tab>
+             <lightning-tab label="Applied Leaves">
+               
+                    <c-leave-requests oneventfromallleaves={handleeventFromAllLeaves} lwc:ref="allLeaveComp"></c-leave-requests>
+               
+                
+                
+            </lightning-tab>
+        </lightning-tabset>
+    </div>
+    
+</template>
+
+

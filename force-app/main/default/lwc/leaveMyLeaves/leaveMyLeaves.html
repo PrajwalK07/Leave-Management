@@ -1,0 +1,71 @@
+<template>
+    <template if:true={showSpinner}>
+        <lightning-spinner
+                alternative-text="Loading..." variant="brand">
+            </lightning-spinner>
+    </template>
+    
+    <div class="slds-align_absolute-center slds-p-bottom_medium">
+        <lightning-icon class="slds-align_absolute-center" onclick={createLeaveRecord} icon-name='action:new' alternative-text='new' size='x-small' title='new' ></lightning-icon>
+    </div>
+       
+    
+    
+    <lightning-card>
+       
+        <lightning-datatable
+            key-field="Id"
+            hide-checkbox-column
+            
+            onrowaction={handleRowAction}
+            data={myLeaveRequests}
+            columns={columns}>
+        </lightning-datatable>
+        <template lwc:if={dataNotFound}>
+            <div class="slds-text-align_center slds-text-heading_medium slds-p-around_large">No Data Found</div>
+        </template>
+    </lightning-card>
+
+
+    <c-toast-component></c-toast-component>
+    <template if:true={showModalComponent}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+              <button onclick={closeModalComp} class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <lightning-icon icon-name='action:close' alternative-text='close' size='x-small' title='close'></lightning-icon>
+                <span class="slds-assistive-text">Cancel and close</span>
+              </button>
+              <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Leave Request</h1>
+              </div>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                
+                <lightning-record-edit-form
+                    object-api-name={objectApiName}
+                    record-id={recordId}
+                    onsuccess={successHandler}
+                    
+                    onsubmit={submitHandler}
+                >
+                <lightning-messages> </lightning-messages>
+                        <lightning-input-field field-name="From_Date__c"> </lightning-input-field>
+                        <lightning-input-field field-name="To_Date__c"> </lightning-input-field>
+                        <lightning-input-field field-name="Leave_Type__c"> </lightning-input-field>
+                        <lightning-input-field field-name="Reason__c"> </lightning-input-field>
+                        
+                        <div class="slds-var-m-top_medium">
+                            <lightning-button variant="brand" type="submit" label="Save"></lightning-button>
+                            <lightning-button class="slds-m-left_medium slds-p-left_medium" onclick={closeModalComp} variant="brand" label="Cancel"></lightning-button>
+                        </div>
+                </lightning-record-edit-form>
+
+              </div>
+              
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+    
+    
+    
+</template>

@@ -1,0 +1,52 @@
+<template>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="4">
+            <div  class="card">
+                <template lwc:if={plannedData}>
+                    <c-leave-charts type="Planned Leave" total={plannedDataAllocated} consumed={plannedDataConsumed} remaining={plannedDataRem}></c-leave-charts>
+                    <!--<c-leave-planned-comp planned-data={plannedData}></c-leave-planned-comp>-->
+                </template>
+                <template lwc:else>
+                    <lightning-spinner
+                            alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                </template>
+                
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="4">
+            <div  class="card">
+                <template lwc:if={sickData}>
+                    <c-leave-charts type="Sick Leave" total={sickDataAllocated} consumed={sickDataConsumed} remaining={sickDataRem}></c-leave-charts>
+                    <!--<c-leave-sick-comp sick-data={sickData}></c-leave-sick-comp>-->
+                    
+                </template>
+                <template lwc:else>
+                    <lightning-spinner
+                            alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                </template>
+                
+            </div>
+            
+        </lightning-layout-item>
+        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="4">
+            <div  class="card">
+                <template lwc:if={unpaidData}>
+                    <c-leave-charts type="Unpaid Leave" total={unpaidDataAllocated} consumed={unpaidDataConsumed} remaining={unpaidDataRem}></c-leave-charts>
+                    <!--<c-leave-unpaida-comp unpaid-data={unpaidData}></c-leave-unpaida-comp>-->
+                    
+                    
+                </template>
+                <template lwc:else>
+                    <lightning-spinner
+                            alternative-text="Loading..." variant="brand">
+                    </lightning-spinner>
+                </template>
+                
+            </div>
+            
+        </lightning-layout-item>
+    </lightning-layout>
+    
+</template>
